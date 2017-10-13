@@ -206,6 +206,12 @@ else
 	if grep 'create .* -o prop' $zrep_checkfile >/dev/null ;then
 		Z_HAS_REC_O=1 # can use recv -o
 	fi
+	if grep 'receive .*-[a-zA-Z]*u' $zrep_checkfile >/dev/null ;then
+		Z_HAS_REC_U=1	  # can use recv -u
+	fi
+	if grep 'recv .*-[[a-zA-Z]*u' $zrep_checkfile >/dev/null ;then
+		Z_HAS_REC_U=1	  # can use recv -u
+	fi
 	if grep 'set .*snapshot' $zrep_checkfile >/dev/null ;then
 		Z_HAS_SNAPPROPS=1 # can set properties on snapshots
 	fi
