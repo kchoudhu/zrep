@@ -198,6 +198,7 @@ if grep 'help' $zrep_checkfile >/dev/null ;then
 	DEPTHCAP="-d 1" # limits "list -r"
 
 else
+	Z_HAS_REC_U=1
 	if grep 'receive .*-[a-zA-Z]*x' $zrep_checkfile >/dev/null ;then
 		Z_HAS_X=1	  # can use recv -x
 	fi
@@ -1465,8 +1466,14 @@ _sync(){
 		$BBCP -N io "$SENDCMD" \
 		   "$desthost:zfs recv $force $destfs"
 	else
-		eval zfs send ${ZREP_R} ${ZREP_INC_FLAG} $lastsent $newsnap ${Z_F_OUT} |
-		   zrep_ssh $desthost "${Z_F_IN} zfs recv $force $destfs"
+
+		if (( ! Z_HAS_REC_U )) ; then
+			eval zfs send ${ZREP_R} ${ZREP_INC_FLAG} $lastsent $newsnap ${Z_F_OUT} |
+			   zrep_ssh $desthost "${Z_F_IN} zfs recv $force $destfs"
+		else
+			eval zfs send ${ZREP_R} ${ZREP_INC_FLAG} $lastsent $newsnap ${Z_F_OUT} |
+			   zrep_ssh $desthost "${Z_F_IN} zfs recv -u $force $destfs"
+		fi
 	fi
 
 	# I rename this to _unsent rather than just delete, in case people are using zrep
