@@ -888,8 +888,8 @@ zrep_clear(){
 
 
 	if [[ "$ZREP_FORCE" != "-f" ]] ; then
-		print Continuing in 10 seconds
-		sleep 10
+		print Continuing in 1 seconds
+		sleep 1
 	fi
 
 	_clear $1
