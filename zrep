@@ -1,4 +1,4 @@
-#!/bin/ksh -p
+#!/usr/bin/env ksh93
 
 # For more detailed documentation, see zrep.txt or zrep.overview.txt
 ZREP_VERSION=1.7.3
