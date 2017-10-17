@@ -56,7 +56,7 @@ ZREPTAG=${ZREPTAG:-zrep}
 
 # If you want to recursively create/send snapshots, set this to -R
 #  (or use the -R option to BOTH zrep init and zrep sync
-#ZREP_R=-R
+ZREP_R=-R
 
 # The default incremental flag is -I.
 #   UNLESS you set ZREPTAG to something other than zrep, in which case
