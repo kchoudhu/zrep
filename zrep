@@ -1055,7 +1055,7 @@ zrep_init(){
 		READONLYPROP=""
 		print Warning: zfs recv lacking -o readonly
 		print Creating readonly destination filesystem as separate step
-		zrep_ssh $desthost zfs create $ZREP_CREATE_FLAGS -o readonly=on $vflags $destfs || zrep_errquit "Cannot create $desthost:$destfs"
+		zrep_ssh $desthost zfs create $ZREP_CREATE_FLAGS -u -o readonly=on $vflags $destfs || zrep_errquit "Cannot create $desthost:$destfs"
 	fi
 
 	snap="${srcfs}@${ZREPTAG}_000000"
